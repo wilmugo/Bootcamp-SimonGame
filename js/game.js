@@ -18,15 +18,27 @@ function nextSequence() {
   playSound(randomChosenColour);
 }
 
+// function  for play sound with color like argument
 function playSound(name) {
   var audio = new Audio("./sounds/" + name + ".mp3"); 
   audio.play();
 }
 
+// function for animate the click of buttons adding and removing pressed class
+function animatePress(currentColour) {
+  $('#' + currentColour).addClass('pressed');
+  setTimeout(() => {
+    $('#' + currentColour).removeClass('pressed');
+  }, 100);
+}
+
+
+//event handler click in all buttons
 $('.btn').click(function (e) { 
   e.preventDefault();
   let userChosenColour = $(this).attr("id");
   userClickedPattern.push(userChosenColour);
+  animatePress(userChosenColour);
   playSound(userChosenColour);
 });
 
